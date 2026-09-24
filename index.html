@@ -1,446 +1,256 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Nana's 19th Birthday</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background: #fce8f0;
-
-            font-family: Arial, sans-serif;
-
-            color: #5f3b49;
-
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 450px;
-
-            background: white;
-
-            padding: 40px 35px;
-
-            border-radius: 25px;
-
-            box-shadow:
-                0 10px 30px rgba(180, 100, 130, 0.15);
-
-            text-align: center;
-        }
-
-        .heart {
-            font-size: 38px;
-
-            margin-bottom: 10px;
-
-            color: #d77fa1;
-        }
-
-        h1 {
-            color: #c76b91;
-
-            font-size: 32px;
-
-            margin-bottom: 12px;
-        }
-
-        .subtitle {
-            font-size: 16px;
-
-            color: #8a6875;
-
-            line-height: 1.5;
-
-            margin-bottom: 15px;
-        }
-
-        .data {
-            display: inline-block;
-
-            background: #fff0f5;
-
-            color: #b65f82;
-
-            padding: 9px 15px;
-
-            border-radius: 20px;
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-
-            text-align: left;
-
-            margin-bottom: 8px;
-
-            font-weight: bold;
-
-            color: #704857;
-        }
-
-        input {
-            width: 100%;
-
-            padding: 14px;
-
-            border: 2px solid #f2c4d5;
-
-            border-radius: 12px;
-
-            font-size: 16px;
-
-            outline: none;
-
-            margin-bottom: 20px;
-        }
-
-        input:focus {
-            border-color: #d77fa1;
-        }
-
-        button {
-            width: 100%;
-
-            padding: 15px;
-
-            border: none;
-
-            border-radius: 14px;
-
-            background: #d77fa1;
-
-            color: white;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-        button:hover {
-            background: #c9688f;
-
-            transform: translateY(-2px);
-        }
-
-        button:disabled {
-            opacity: 0.6;
-
-            cursor: wait;
-
-            transform: none;
-        }
-
-        #mensagem {
-            display: none;
-
-            margin-top: 25px;
-
-            padding: 20px;
-
-            background: #fff0f5;
-
-            border-radius: 15px;
-
-            color: #8b4d66;
-
-            font-weight: bold;
-
-            line-height: 1.5;
-        }
-
-        .decoracao {
-            margin-top: 25px;
-
-            color: #d77fa1;
-
-            font-size: 20px;
-        }
-
-        #formularioGoogle {
-            display: none;
-        }
-
-    </style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nana's 19th Birthday</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe4ec, #f9c6d4);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 25px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    h1 {
+      color: #d86b8a;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .deadline {
+      display: inline-block;
+      background: #ffe8ef;
+      color: #c65375;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #f1c1cf;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    input:focus {
+      border-color: #d86b8a;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #d86b8a;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #c95778;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    #mensagem {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .sucesso {
+      color: #4d9b68;
+    }
+
+    .erro {
+      color: #c65375;
+    }
+
+    /* Formulário invisível usado para enviar ao Google Forms */
+    #formularioGoogle {
+      display: none;
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <div class="card">
 
-    <div class="container">
+    <h1>Nana's 19th Birthday 🎀</h1>
 
+    <p class="subtitle">
+      Você está convidado para comemorar esse dia especial comigo! ♡
+    </p>
 
-        <div class="heart">♡</div>
-
-
-        <h1>Nana's 19th Birthday</h1>
-
-
-        <p class="subtitle">
-
-            Você está convidado para comemorar
-            esse dia especial comigo! ♡
-
-        </p>
-
-
-        <div class="data">
-
-            Confirme até o dia 29.09 (terça-feira)
-
-        </div>
-
-
-        <form id="formulario">
-
-            <label for="nome">
-                Seu nome
-            </label>
-
-
-            <input
-                type="text"
-                id="nome"
-                placeholder="Digite seu nome"
-                required
-            >
-
-
-            <button type="submit" id="botao">
-
-                Confirmar presença ♡
-
-            </button>
-
-        </form>
-
-
-        <div id="mensagem"></div>
-
-
-        <div class="decoracao">
-
-            ✿ ♡ ✿
-
-        </div>
-
-
+    <div class="deadline">
+      Confirme até o dia 29.09 (terça-feira)
     </div>
 
+    <input
+      type="text"
+      id="nome"
+      placeholder="Seu nome"
+      autocomplete="name"
+    >
 
-    <!--
-        Formulário invisível que envia a resposta
-        para o Google Forms.
-    -->
+    <button id="botao" onclick="confirmarPresenca()">
+      Confirmar presença ♡
+    </button>
 
-    <iframe
-        name="iframeGoogle"
-        id="iframeGoogle"
-        style="display:none;">
-    </iframe>
+    <div id="mensagem"></div>
 
+  </div>
 
-    <form
-        id="formularioGoogle"
-        action="https://docs.google.com/forms/d/e/1FAIpQLScyEmFp8XGM49KEAc1q34g62mygltP1nCMwIo1EvzWp_KAP-w/formResponse"
-        method="POST"
-        target="iframeGoogle">
 
-        <input
-            type="text"
-            name="entry.592017861"
-            id="nomeGoogle"
-        >
+  <!--
+    FORMULÁRIO INVISÍVEL DO GOOGLE FORMS
+  -->
 
-    </form>
+  <iframe
+    name="iframeGoogle"
+    style="display:none;">
+  </iframe>
 
+  <form
+    id="formularioGoogle"
+    action="https://docs.google.com/forms/d/e/1FAIpQLScyEmFp8XGM49KEAc1q34g62mygltP1nCMwIo1EvzWp_KAP-w/formResponse"
+    method="POST"
+    target="iframeGoogle">
 
-    <script>
+    <input
+      type="text"
+      name="entry.592017861"
+      id="nomeGoogle">
 
+  </form>
 
-        // ==========================================
-        // DATA LIMITE
-        // ==========================================
 
-        const dataLimite =
-            new Date('2026-09-29T23:59:59');
+  <script>
 
+    function confirmarPresenca() {
 
-        // ==========================================
-        // ELEMENTOS
-        // ==========================================
+      const nome = document.getElementById("nome").value.trim();
+      const botao = document.getElementById("botao");
+      const mensagem = document.getElementById("mensagem");
+      const nomeGoogle = document.getElementById("nomeGoogle");
+      const formularioGoogle = document.getElementById("formularioGoogle");
 
-        const formulario =
-            document.getElementById("formulario");
+      /*
+        Verifica se o nome foi preenchido
+      */
 
+      if (nome === "") {
 
-        const mensagem =
-            document.getElementById("mensagem");
+        mensagem.className = "erro";
+        mensagem.innerHTML = "Por favor, coloque seu nome. 💕";
 
+        return;
+      }
 
-        const botao =
-            document.getElementById("botao");
 
+      /*
+        Verifica a data limite
+      */
 
-        const formularioGoogle =
-            document.getElementById("formularioGoogle");
+      const agora = new Date();
 
+      // 29/09/2026 às 23:59:59
+      const limite = new Date("2026-09-29T23:59:59");
 
-        const nomeGoogle =
-            document.getElementById("nomeGoogle");
+      if (agora > limite) {
 
+        mensagem.className = "erro";
+        mensagem.innerHTML =
+          "As confirmações já foram encerradas. 💕";
 
-        // ==========================================
-        // VERIFICAR PRAZO
-        // ==========================================
+        botao.disabled = true;
 
-        function verificarPrazo() {
+        return;
+      }
 
-            const agora = new Date();
 
+      /*
+        Coloca o nome no formulário do Google
+      */
 
-            if (agora > dataLimite) {
+      nomeGoogle.value = nome;
 
-                formulario.style.display = "none";
 
+      /*
+        Evita dois cliques
+      */
 
-                mensagem.innerHTML = `
-                    💗
-                    <br><br>
-                    As confirmações já foram encerradas.
-                    <br><br>
-                    Obrigada pelo carinho! ♡
-                `;
+      botao.disabled = true;
+      botao.innerText = "Enviando...";
 
 
-                mensagem.style.display = "block";
-            }
+      /*
+        Envia para o Google Forms
+      */
 
-        }
+      formularioGoogle.submit();
 
 
-        // Verifica assim que o site abre
-        verificarPrazo();
+      /*
+        Aguarda o envio e mostra a mensagem
+      */
 
+      setTimeout(function() {
 
-        // ==========================================
-        // CONFIRMAÇÃO
-        // ==========================================
+        mensagem.className = "sucesso";
 
-        formulario.addEventListener(
-            "submit",
-            function(event) {
+        mensagem.innerHTML =
+          "✨ Presença confirmada! 💕<br><br>" +
+          "Obrigada, " + nome + "!";
 
-                event.preventDefault();
+        document.getElementById("nome").value = "";
 
+        botao.innerText = "Presença confirmada ✓";
 
-                // Verifica novamente a data
-                const agora = new Date();
+      }, 1000);
 
+    }
 
-                if (agora > dataLimite) {
-
-                    verificarPrazo();
-
-                    return;
-                }
-
-
-                // Pega o nome
-                const nome =
-                    document
-                    .getElementById("nome")
-                    .value
-                    .trim();
-
-
-                if (!nome) {
-                    return;
-                }
-
-
-                // Desativa o botão
-                botao.disabled = true;
-
-                botao.innerText =
-                    "Confirmando...";
-
-
-                // Coloca o nome no formulário do Google
-                nomeGoogle.value = nome;
-
-
-                // Envia para o Google Forms
-                formularioGoogle.submit();
-
-
-                // Mostra confirmação
-                setTimeout(function() {
-
-                    formulario.style.display =
-                        "none";
-
-
-                    mensagem.innerHTML = `
-
-                        ✨ Presença confirmada! 💕
-
-                        <br><br>
-
-                        Obrigada, ${nome}!
-
-                        <br><br>
-
-                        Mal posso esperar para
-                        comemorar com você! ♡
-
-                    `;
-
-
-                    mensagem.style.display =
-                        "block";
-
-                }, 700);
-
-            }
-        );
-
-
-    </script>
-
+  </script>
 
 </body>
-
 </html>
