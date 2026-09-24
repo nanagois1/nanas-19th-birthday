@@ -51,20 +51,27 @@
 
         .heart {
             font-size: 38px;
+
             margin-bottom: 10px;
+
             color: #d77fa1;
         }
 
         h1 {
             color: #c76b91;
+
             font-size: 32px;
+
             margin-bottom: 12px;
         }
 
         .subtitle {
             font-size: 16px;
+
             color: #8a6875;
+
             line-height: 1.5;
+
             margin-bottom: 15px;
         }
 
@@ -180,6 +187,10 @@
             font-size: 20px;
         }
 
+        #formularioGoogle {
+            display: none;
+        }
+
     </style>
 
 </head>
@@ -187,11 +198,15 @@
 
 <body>
 
+
     <div class="container">
+
 
         <div class="heart">♡</div>
 
+
         <h1>Nana's 19th Birthday</h1>
+
 
         <p class="subtitle">
 
@@ -199,6 +214,7 @@
             esse dia especial comigo! ♡
 
         </p>
+
 
         <div class="data">
 
@@ -213,6 +229,7 @@
                 Seu nome
             </label>
 
+
             <input
                 type="text"
                 id="nome"
@@ -220,8 +237,11 @@
                 required
             >
 
+
             <button type="submit" id="botao">
+
                 Confirmar presença ♡
+
             </button>
 
         </form>
@@ -231,17 +251,56 @@
 
 
         <div class="decoracao">
+
             ✿ ♡ ✿
+
         </div>
+
 
     </div>
 
 
+    <!--
+        Formulário invisível que envia a resposta
+        para o Google Forms.
+    -->
+
+    <iframe
+        name="iframeGoogle"
+        id="iframeGoogle"
+        style="display:none;">
+    </iframe>
+
+
+    <form
+        id="formularioGoogle"
+        action="https://docs.google.com/forms/d/e/1FAIpQLScyEmFp8XGM49KEAc1q34g62mygltP1nCMwIo1EvzWp_KAP-w/formResponse"
+        method="POST"
+        target="iframeGoogle">
+
+        <input
+            type="text"
+            name="entry.592017861"
+            id="nomeGoogle"
+        >
+
+    </form>
+
+
     <script>
+
+
+        // ==========================================
+        // DATA LIMITE
+        // ==========================================
 
         const dataLimite =
             new Date('2026-09-29T23:59:59');
 
+
+        // ==========================================
+        // ELEMENTOS
+        // ==========================================
 
         const formulario =
             document.getElementById("formulario");
@@ -255,14 +314,27 @@
             document.getElementById("botao");
 
 
-        // Verifica se o prazo terminou
+        const formularioGoogle =
+            document.getElementById("formularioGoogle");
+
+
+        const nomeGoogle =
+            document.getElementById("nomeGoogle");
+
+
+        // ==========================================
+        // VERIFICAR PRAZO
+        // ==========================================
+
         function verificarPrazo() {
 
             const agora = new Date();
 
+
             if (agora > dataLimite) {
 
                 formulario.style.display = "none";
+
 
                 mensagem.innerHTML = `
                     💗
@@ -272,13 +344,20 @@
                     Obrigada pelo carinho! ♡
                 `;
 
+
                 mensagem.style.display = "block";
             }
+
         }
 
 
+        // Verifica assim que o site abre
         verificarPrazo();
 
+
+        // ==========================================
+        // CONFIRMAÇÃO
+        // ==========================================
 
         formulario.addEventListener(
             "submit",
@@ -287,6 +366,7 @@
                 event.preventDefault();
 
 
+                // Verifica novamente a data
                 const agora = new Date();
 
 
@@ -298,6 +378,7 @@
                 }
 
 
+                // Pega o nome
                 const nome =
                     document
                     .getElementById("nome")
@@ -310,13 +391,22 @@
                 }
 
 
+                // Desativa o botão
                 botao.disabled = true;
 
                 botao.innerText =
                     "Confirmando...";
 
 
-                // Temporariamente apenas mostra a confirmação
+                // Coloca o nome no formulário do Google
+                nomeGoogle.value = nome;
+
+
+                // Envia para o Google Forms
+                formularioGoogle.submit();
+
+
+                // Mostra confirmação
                 setTimeout(function() {
 
                     formulario.style.display =
@@ -342,12 +432,14 @@
                     mensagem.style.display =
                         "block";
 
-                }, 500);
+                }, 700);
 
             }
         );
 
+
     </script>
+
 
 </body>
 
